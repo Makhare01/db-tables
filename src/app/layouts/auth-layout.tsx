@@ -29,7 +29,7 @@ export const AuthLayout = ({ children }: Props) => {
         }}
       >
         <Typography variant="h1" fontWeight={700}>
-          Quiz
+          DB Tables
         </Typography>
       </Box>
       <Box

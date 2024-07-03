@@ -33,7 +33,7 @@ export const TextField = forwardRef<HTMLDivElement, TextFieldProps>(
           ref={ref}
           {...props}
           sx={{
-            bgcolor: "white",
+            bgcolor: "background.default",
             border: "none",
             borderRadius: 2,
             "& .MuiOutlinedInput-root": {

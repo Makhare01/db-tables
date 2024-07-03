@@ -35,7 +35,7 @@ export const Providers = ({ children }: Props) => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <HelmetProvider>
-          <Helmet defaultTitle="Quiz app" titleTemplate="%s · Quiz app" />
+          <Helmet defaultTitle="DB Tables" titleTemplate="%s · DB Tables" />
           {/* // TODO */}
           <ErrorBoundary fallback={null}>
             <GlobalQueryClientProvider>

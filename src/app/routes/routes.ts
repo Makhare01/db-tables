@@ -7,6 +7,31 @@ export const authRoutes = [
     factory: () => import("../../pages/dashboard"),
     title: "Dashboard",
   }),
+  createRoute({
+    path: paths.profile,
+    factory: () => import("../../pages/profile"),
+    title: "Profile",
+  }),
+  createRoute({
+    path: paths.myTables,
+    factory: () => import("../../pages/my-tables"),
+    title: "My tables",
+  }),
+  createRoute({
+    path: paths.myTableDetails,
+    factory: () => import("../../pages/my-tables/table"),
+    title: "My table details",
+  }),
+  createRoute({
+    path: paths.publicTables,
+    factory: () => import("../../pages/public-tables"),
+    title: "Public tables",
+  }),
+  createRoute({
+    path: paths.publicTableDetails,
+    factory: () => import("../../pages/public-tables/table"),
+    title: "Public table details",
+  }),
 ];
 
 export const unauthRoutes = [

@@ -1,7 +1,11 @@
 import { AppLayout } from "@app/layouts";
-import { authRoutes } from "@app/routes";
+import { authRoutes, paths } from "@app/routes";
 import { NotFound } from "@components/not-fond";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
 import { RoutesWrapper } from "src/providers";
 
 export const AuthApp = () => {
@@ -19,6 +23,10 @@ export const AuthApp = () => {
         {
           path: "*",
           element: <NotFound />,
+        },
+        {
+          index: true,
+          element: <Navigate replace to={paths.dashboard} />,
         },
         ...authRoutes,
       ],

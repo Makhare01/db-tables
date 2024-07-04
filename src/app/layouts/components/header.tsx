@@ -29,7 +29,7 @@ export const Header = () => {
         }}
       >
         <Typography variant="h3" sx={{ fontWeight: 700 }}>
-          Dashboard
+          DB Tables
         </Typography>
       </Box>
 

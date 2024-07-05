@@ -32,6 +32,11 @@ export const authRoutes = [
     factory: () => import("../../pages/public-tables/table"),
     title: "Public table details",
   }),
+  createRoute({
+    path: paths.createTable,
+    factory: () => import("../../pages/create-table"),
+    title: "Create table",
+  }),
 ];
 
 export const unauthRoutes = [

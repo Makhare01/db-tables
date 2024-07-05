@@ -7,6 +7,7 @@ export const paths = {
   myTableDetails: "/my-tables/:tableId",
   publicTables: "/public-tables",
   publicTableDetails: "/public-tables/:tableId",
+  createTable: "/create-table",
 } as const;
 
 export type PathKey = keyof typeof paths;

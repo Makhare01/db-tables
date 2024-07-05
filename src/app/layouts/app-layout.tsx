@@ -36,6 +36,8 @@ export const AppLayout = ({ children }: Props) => {
             display: "flex",
             flexDirection: "column",
             alignItems: "stretch",
+            maxWidth: "calc(100% - 300px)",
+            maxHeight: 1,
           }}
         >
           <Header />
@@ -45,6 +47,8 @@ export const AppLayout = ({ children }: Props) => {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              overflow: "auto",
+              maxHeight: 1,
             }}
           >
             {children}

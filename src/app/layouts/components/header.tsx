@@ -33,7 +33,13 @@ export const Header = () => {
         </Typography>
       </Box>
 
-      <Button variant="outlined" sx={{ display: "flex", alignItems: "center" }}>
+      <Button
+        variant="outlined"
+        sx={{ display: "flex", alignItems: "center" }}
+        onClick={() => {
+          navigate(paths.createTable);
+        }}
+      >
         <IconPlus sx={{ mr: 1 }} />
         Create
       </Button>

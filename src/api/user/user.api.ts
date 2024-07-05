@@ -1,6 +1,6 @@
 import { TUser, User } from "@api/auth";
 import { request } from "@lib/request";
-import { UpdatePasswordFormValues } from "@pages/profile/components/profile-tabs";
+import { UpdatePasswordFormValues } from "@pages/profile/components/change-password-block";
 
 export const updateUser = async (input: User) => {
   return await request("/api/user/credentials").post(

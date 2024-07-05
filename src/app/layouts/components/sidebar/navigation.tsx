@@ -7,8 +7,21 @@ import {
   IconTable,
 } from "@app/assets/icons";
 import { paths } from "@app/routes";
+import { useQuery } from "@tanstack/react-query";
+import { qk } from "@api/query-keys";
+import { getMyTables, getPublicTables } from "@api/table";
 
 export const Navigation = () => {
+  const { data: myTables } = useQuery({
+    queryKey: qk.tables.myTables.toKey(),
+    queryFn: getMyTables,
+  });
+
+  const { data: publicTables } = useQuery({
+    queryKey: qk.tables.publicTables.toKey(),
+    queryFn: getPublicTables,
+  });
+
   return (
     <Box
       flex={1}
@@ -37,52 +50,24 @@ export const Navigation = () => {
         title="My tables"
         to={paths.myTables}
         Icon={IconCreateTable}
-        children={[
-          {
-            title: "My tables 1",
-            to: "/item1",
-            Icon: IconTable,
-            isSubItem: true,
-          },
-          {
-            title: "My tables 2",
-            to: "/item2",
-            Icon: IconTable,
-            isSubItem: true,
-          },
-          {
-            title: "My tables 3",
-            to: "/item3",
-            Icon: IconTable,
-            isSubItem: true,
-          },
-        ]}
+        children={myTables?.map((table) => ({
+          title: table.tableName,
+          Icon: IconTable,
+          to: table._id,
+          isSubItem: true,
+        }))}
       />
 
       <NavigationItem
         title="Public tables"
         to={paths.publicTables}
         Icon={IconPublicTables}
-        children={[
-          {
-            title: "My tables 1",
-            to: "/item1",
-            Icon: IconTable,
-            isSubItem: true,
-          },
-          {
-            title: "My tables 2",
-            to: "/item2",
-            Icon: IconTable,
-            isSubItem: true,
-          },
-          {
-            title: "My tables 3",
-            to: "/item3",
-            Icon: IconTable,
-            isSubItem: true,
-          },
-        ]}
+        children={publicTables?.map((table) => ({
+          title: table.tableName,
+          Icon: IconTable,
+          to: table._id,
+          isSubItem: true,
+        }))}
       />
     </Box>
   );

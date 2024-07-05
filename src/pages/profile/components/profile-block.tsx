@@ -8,7 +8,6 @@ type Props = {
 export const ProfileBlock = ({ children }: Props) => {
   return (
     <Box
-      p={3}
       bgcolor="background.paper"
       borderRadius={2}
       width={{ md: 1, lg: "50%" }}

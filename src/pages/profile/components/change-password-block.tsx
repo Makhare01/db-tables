@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import { ProfileBlock } from "./profile-block";
 import { getFieldError, passwordRegex } from "@lib/form";
 import { z } from "zod";
@@ -54,9 +54,11 @@ export const ChangePasswordBlock = () => {
 
   return (
     <ProfileBlock>
-      <Typography variant="h4" fontWeight={700}>
+      <Typography variant="h4" fontWeight={700} m={3} mb={2}>
         Change password
       </Typography>
+
+      <Divider />
 
       <Box
         component="form"
@@ -65,7 +67,7 @@ export const ChangePasswordBlock = () => {
           flexDirection: "column",
           alignItems: "flex-start",
           gap: 2,
-          mt: 2,
+          m: 3,
         }}
         onSubmit={handleSubmit((values) => {
           $updatePassword.mutate(

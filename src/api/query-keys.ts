@@ -19,4 +19,8 @@ export const qk = buildModuleCacheKey({
       refresh: null,
     },
   },
+  tables: {
+    myTables: null,
+    publicTables: null,
+  },
 });

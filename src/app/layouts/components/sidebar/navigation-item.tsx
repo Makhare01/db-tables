@@ -94,7 +94,7 @@ export const NavigationItem = ({
             <NavigationItem
               key={navItem.to}
               {...navItem}
-              to={to + navItem.to}
+              to={to + "/" + navItem.to}
             />
           ))}
         </Collapse>

@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import { ProfileBlock } from "./profile-block";
 import { useAuth, useAuthUser } from "@app/auth";
 import { Controller, useForm } from "react-hook-form";
@@ -42,9 +42,11 @@ export const UpdateProfileInfoBlock = () => {
 
   return (
     <ProfileBlock>
-      <Typography variant="h4" fontWeight={700}>
+      <Typography variant="h4" fontWeight={700} m={3} mb={2}>
         Update profile info
       </Typography>
+
+      <Divider />
 
       <Box
         component="form"
@@ -53,7 +55,7 @@ export const UpdateProfileInfoBlock = () => {
           flexDirection: "column",
           alignItems: "flex-start",
           gap: 2,
-          mt: 2,
+          m: 3,
         }}
         onSubmit={handleSubmit((values) => {
           $credentials.mutate(

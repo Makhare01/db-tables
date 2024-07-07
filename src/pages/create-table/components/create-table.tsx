@@ -1,3 +1,4 @@
+import { CreateTableFormValues } from "@api/table";
 import { Button } from "@app/ui/button";
 import { Select } from "@app/ui/select";
 import { TextField } from "@app/ui/texfield";
@@ -5,7 +6,7 @@ import { getFieldError } from "@lib/form";
 import {
   Box,
   Checkbox,
-  Table,
+  Table as MuiTable,
   TableBody,
   TableCell,
   TableContainer,
@@ -15,7 +16,6 @@ import {
 import { recordToOptions } from "@utils/options";
 import { dbColumnTypesOptions } from "@utils/tables";
 import { Control, Controller, FieldArrayWithId } from "react-hook-form";
-import { CreateTableFormValues } from "./create-table-form";
 
 type Props = {
   fields: FieldArrayWithId<CreateTableFormValues>[];
@@ -45,7 +45,7 @@ export const CreateTable = ({ fields, control, onRemove }: Props) => {
         },
       }}
     >
-      <Table sx={{ overflow: "auto" }}>
+      <MuiTable sx={{ overflow: "auto" }}>
         <TableHead>
           <TableRow>
             <TableCell
@@ -194,7 +194,7 @@ export const CreateTable = ({ fields, control, onRemove }: Props) => {
             ))}
           </TableRow>
         </TableBody>
-      </Table>
+      </MuiTable>
     </TableContainer>
   );
 };

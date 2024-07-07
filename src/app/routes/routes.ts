@@ -19,8 +19,18 @@ export const authRoutes = [
   }),
   createRoute({
     path: paths.myTableDetails,
-    factory: () => import("../../pages/my-tables/table"),
+    factory: () => import("../../pages/my-tables/details"),
     title: "My table details",
+  }),
+  createRoute({
+    path: paths.addDataToTable,
+    factory: () => import("../../pages/my-tables/add-data"),
+    title: "Add data",
+  }),
+  createRoute({
+    path: paths.editTable,
+    factory: () => import("../../pages/my-tables/edit-table"),
+    title: "Edit table",
   }),
   createRoute({
     path: paths.publicTables,
@@ -29,7 +39,7 @@ export const authRoutes = [
   }),
   createRoute({
     path: paths.publicTableDetails,
-    factory: () => import("../../pages/public-tables/table"),
+    factory: () => import("../../pages/public-tables/details"),
     title: "Public table details",
   }),
   createRoute({

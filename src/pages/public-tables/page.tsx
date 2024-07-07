@@ -1,8 +1,10 @@
 import { qk } from "@api/query-keys";
 import { getPublicTables } from "@api/table";
+import { paths } from "@app/routes";
 import { TableCard } from "@components/table-card";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
+import { generatePath } from "react-router-dom";
 import { P, match } from "ts-pattern";
 
 export const PublicTablesPage = () => {
@@ -48,7 +50,13 @@ export const PublicTablesPage = () => {
 
               <Box display="flex" gap={2} flexWrap="wrap" pb={3}>
                 {tables.map((table) => (
-                  <TableCard key={table._id} {...table} />
+                  <TableCard
+                    key={table._id}
+                    to={generatePath(paths.publicTableDetails, {
+                      tableId: table._id,
+                    })}
+                    {...table}
+                  />
                 ))}
               </Box>
             </Box>

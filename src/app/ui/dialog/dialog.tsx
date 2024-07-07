@@ -18,6 +18,14 @@ type Props = DialogProps & {
   children: ReactNode;
   confirmText?: string;
   denyText?: string;
+  confirmButtonColor?:
+    | "inherit"
+    | "error"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "info"
+    | "warning";
 };
 
 export const Dialog = ({
@@ -27,6 +35,7 @@ export const Dialog = ({
   children,
   denyText,
   confirmText,
+  confirmButtonColor,
   ...dialogProps
 }: Props) => {
   return (
@@ -42,7 +51,9 @@ export const Dialog = ({
         justifyContent="space-between"
         pr={1}
       >
-        <DialogTitle>{title}</DialogTitle>
+        <DialogTitle fontWeight={700} fontSize={18}>
+          {title}
+        </DialogTitle>
         <IconButton onClick={onClose}>
           <IconClose sx={{ fontSize: 28 }} />
         </IconButton>
@@ -59,12 +70,12 @@ export const Dialog = ({
           justifyContent: "space-between",
         }}
       >
-        <Button variant="outlined" color="error" onClick={onClose}>
+        <Button variant="outlined" onClick={onClose}>
           {denyText ?? "Cancel"}
         </Button>
         <Button
           variant="outlined"
-          color="success"
+          color={confirmButtonColor ?? "success"}
           onClick={onConfirm}
           autoFocus
         >

@@ -1,51 +1,42 @@
 import { DBTable, TableColumn } from "@api/table";
-import {
-  Box,
-  Divider,
-  Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-} from "@mui/material";
-import { dbVisibilityOptions } from "@utils/tables";
+import { Table } from "@app/ui/table";
+import { Box, Divider, Stack, Typography } from "@mui/material";
+import { dbVisibilityOptions, dbColumnTypesOptions } from "@utils/tables";
+import { useNavigate } from "react-router-dom";
 
 const ColumnsTable = ({ columns }: { columns: Array<TableColumn> }) => {
   return (
-    <TableContainer sx={{ border: 1, borderColor: "divider" }}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell align="left">Type</TableCell>
-            <TableCell align="left">Nullable</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {columns.map((column) => (
-            <TableRow
-              key={column._id}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {column.name}
-              </TableCell>
-              <TableCell align="left">{column.type}</TableCell>
-              <TableCell align="left">{String(column.nullable)}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <Table
+      columns={[
+        { key: "name", name: "Name" },
+        { key: "type", name: "Type", align: "left" },
+        { key: "nullable", name: "Nullable", align: "left" },
+      ]}
+      rows={columns.map((column) => ({
+        key: column._id,
+        cells: [
+          column.name,
+          dbColumnTypesOptions[column.type],
+          String(column.nullable),
+        ],
+      }))}
+    />
   );
 };
 
-type Props = DBTable;
+type Props = DBTable & {
+  to: string;
+};
 
-export const TableCard = ({ tableName, visibility, tableColumns }: Props) => {
+export const TableCard = ({
+  author,
+  tableName,
+  visibility,
+  tableColumns,
+  to,
+}: Props) => {
+  const navigate = useNavigate();
+
   return (
     <Box
       sx={{
@@ -56,7 +47,13 @@ export const TableCard = ({ tableName, visibility, tableColumns }: Props) => {
       }}
     >
       <Box width={1} p={3} py={2}>
-        <Typography variant="h4" fontWeight={700}>
+        <Typography
+          variant="h4"
+          sx={{ fontWeight: 700, cursor: "pointer" }}
+          onClick={() => {
+            navigate(to);
+          }}
+        >
           {tableName}
         </Typography>
       </Box>
@@ -64,6 +61,13 @@ export const TableCard = ({ tableName, visibility, tableColumns }: Props) => {
       <Divider />
 
       <Stack p={3} spacing={2}>
+        <Typography variant="body2" color="text.secondary" fontWeight={700}>
+          Author:
+          <Typography component="span" color="text.primary" ml={1}>
+            {author}
+          </Typography>
+        </Typography>
+
         <Typography variant="body2" color="text.secondary" fontWeight={700}>
           Visibility:
           <Typography component="span" color="text.primary" ml={1}>

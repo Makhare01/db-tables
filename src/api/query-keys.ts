@@ -1,4 +1,5 @@
 import { buildModuleCacheKey } from "@lib/react-query-utils";
+import { GetTableDataInput, GetTableDetailsInput } from "./table";
 
 /**
  * Same list can be displayed with the standard page pagination in one place (useQuery)
@@ -21,6 +22,8 @@ export const qk = buildModuleCacheKey({
   },
   tables: {
     myTables: null,
+    tableDetails: (input: GetTableDetailsInput) => [input],
     publicTables: null,
+    tableData: (input: GetTableDataInput) => [input],
   },
 });

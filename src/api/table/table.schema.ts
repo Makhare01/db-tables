@@ -1,6 +1,15 @@
 import { TTimestamps } from "@api/common.schema";
 import { z } from "zod";
 
+export const TDBColumnValue = z.union([
+  z.string(),
+  z.number(),
+  z.boolean(),
+  z.date(),
+]);
+
+export type DBColumnValue = z.infer<typeof TDBColumnValue>;
+
 export const DBColumnType = z.union([
   z.literal("STRING"),
   z.literal("NUMBER"),
@@ -30,6 +39,7 @@ export const TDBTable = z.intersection(
   z.object({
     _id: z.string(),
     userId: z.string(),
+    author: z.string(),
     tableName: z.string(),
     visibility: DBVisibility,
     tableColumns: z.array(TTableColumn),
@@ -37,9 +47,11 @@ export const TDBTable = z.intersection(
   TTimestamps
 );
 
+export type DBTable = z.infer<typeof TDBTable>;
+
 export const TDBTables = z.array(TDBTable);
 
-export type DBTable = z.infer<typeof TDBTable>;
+export const TTableData = z.record(z.string(), TDBColumnValue);
 
 // FORM
 const DBColumn = z.object({

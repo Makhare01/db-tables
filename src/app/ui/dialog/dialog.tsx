@@ -8,7 +8,7 @@ import {
   IconButton,
   Dialog as MuiDialog,
 } from "@mui/material";
-import { ReactNode } from "react";
+import { FormEvent, ReactNode } from "react";
 import { Button } from "../button";
 
 type Props = DialogProps & {
@@ -26,6 +26,8 @@ type Props = DialogProps & {
     | "success"
     | "info"
     | "warning";
+  formId?: string;
+  isFormSubmitting?: boolean;
 };
 
 export const Dialog = ({
@@ -36,6 +38,8 @@ export const Dialog = ({
   denyText,
   confirmText,
   confirmButtonColor,
+  formId,
+  isFormSubmitting,
   ...dialogProps
 }: Props) => {
   return (
@@ -61,7 +65,19 @@ export const Dialog = ({
       <DialogContent
         sx={{ borderTop: 1, borderBottom: 1, borderColor: "divider", py: 0 }}
       >
-        <Box py={3}>{children}</Box>
+        <Box
+          py={3}
+          {...(formId && {
+            component: "form",
+            id: formId,
+            onSubmit: (event: FormEvent) => {
+              event.preventDefault();
+              onConfirm();
+            },
+          })}
+        >
+          {children}
+        </Box>
       </DialogContent>
       <DialogActions
         sx={{
@@ -76,8 +92,13 @@ export const Dialog = ({
         <Button
           variant="outlined"
           color={confirmButtonColor ?? "success"}
-          onClick={onConfirm}
+          onClick={!formId ? onConfirm : undefined}
           autoFocus
+          {...(formId && {
+            type: "submit",
+            form: formId,
+            isLoading: isFormSubmitting,
+          })}
         >
           {confirmText ?? "Confirm"}
         </Button>

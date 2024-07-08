@@ -26,4 +26,7 @@ export const qk = buildModuleCacheKey({
     publicTables: null,
     tableData: (input: GetTableDataInput) => [input],
   },
+  dashboard: {
+    statistics: null,
+  },
 });

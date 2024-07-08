@@ -16,7 +16,7 @@ export const NumberParam = withDefault(
 export const usePagination = (sizeLocalStorageKey: string): Pagination => {
   const [index, setIndex] = useQueryParam("page", NumberParam);
   const [size, setSize] = useLocalStorageState(sizeLocalStorageKey, {
-    defaultValue: 1,
+    defaultValue: 10,
   });
 
   const handleChangePage = useCallback(

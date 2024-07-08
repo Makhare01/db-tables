@@ -45,7 +45,7 @@ export const schemaBuilder = (columns: Array<TableColumn>) => {
   }, {});
 
   return {
-    Schema: z.object({ rows: z.array(z.object(schema)) }),
+    Schema: z.object(schema),
     defaultValues,
   };
 };

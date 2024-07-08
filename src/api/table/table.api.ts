@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { request } from "@lib/request";
 import {
   CreateTableFormValues,
+  TablesStatistics,
   TDBTable,
   TDBTables,
   TTableData,
@@ -77,8 +79,8 @@ export const deleteTable = async ({
 
 export type GetTableDataInput = {
   tableId: string;
-  page: number;
-  limit: number;
+  page?: number;
+  limit?: number;
   sort?: SortItem;
   search?: string;
 };
@@ -92,8 +94,13 @@ export const getTableData = async ({
 }: GetTableDataInput) => {
   const query = new URLSearchParams();
 
-  query.set("page", page.toString());
-  query.set("limit", limit.toString());
+  if (page) {
+    query.set("page", page.toString());
+  }
+
+  if (limit) {
+    query.set("limit", limit.toString());
+  }
 
   if (sort) {
     query.set("sortColumn", sort.column);
@@ -130,4 +137,45 @@ export const addTableData = async ({ tableId, data }: AddTableDataInput) => {
       data,
     },
   });
+};
+
+export type DeleteDocumentInput = {
+  tableId: string;
+  documentId: string;
+};
+
+export const deleteDocument = async ({
+  tableId,
+  documentId,
+}: DeleteDocumentInput) => {
+  return await request("/api/tables/:tableId/:documentId/delete").delete({
+    params: {
+      tableId,
+      documentId,
+    },
+  });
+};
+
+export type UpdateDocumentInput = {
+  tableId: string;
+  documentId: string;
+  body: Record<string, any>;
+};
+
+export const updateDocument = async ({
+  tableId,
+  documentId,
+  body,
+}: UpdateDocumentInput) => {
+  return await request("/api/tables/:tableId/:documentId/edit").patch({
+    params: {
+      tableId,
+      documentId,
+    },
+    body,
+  });
+};
+
+export const tablesStatistics = async () => {
+  return await request("/api/tables/statistics").get({}, TablesStatistics);
 };

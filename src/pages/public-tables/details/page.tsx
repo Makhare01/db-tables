@@ -27,7 +27,7 @@ export const PublicTablePage = () => {
         .with({ isLoading: true }, () => <CircularProgress />)
         .with({ isSuccess: true, data: P.select() }, (table) => {
           return (
-            <Box>
+            <Box maxHeight={1} display="flex" flexDirection="column">
               <Box
                 width={1}
                 p={3}
@@ -51,7 +51,7 @@ export const PublicTablePage = () => {
                 />
               </Box>
 
-              <DetailsDataTable table={table} />
+              <DetailsDataTable table={table} isPublic />
             </Box>
           );
         })

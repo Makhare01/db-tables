@@ -26,6 +26,7 @@ export type Column = {
   name: ReactNode;
   width?: string | number;
   align?: TableCellProps["align"];
+  sortable?: boolean;
 };
 
 type Row = {
@@ -74,9 +75,10 @@ export const Table = ({
               top: 0,
               left: 0,
               bgcolor: "background.default",
+              zIndex: 10,
             }}
           >
-            {columns.map(({ key, name, align, width }, index) => {
+            {columns.map(({ key, name, align, width, sortable }, index) => {
               return (
                 <TableCell
                   key={"column-" + index}
@@ -84,7 +86,7 @@ export const Table = ({
                   width={width}
                   sx={{ fontWeight: 700, minWidth: width }}
                   onClick={() => {
-                    if (!setSort) return;
+                    if (!setSort || !sortable) return;
 
                     pagination?.tablePagination.onChangePage(1);
 
@@ -111,7 +113,7 @@ export const Table = ({
                 >
                   <Box display="flex" alignItems="center" gap={1} width={1}>
                     {name}
-                    {setSort && (
+                    {sortable && (
                       <IconButton>
                         <IconArrow
                           direction={

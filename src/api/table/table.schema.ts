@@ -53,6 +53,12 @@ export const TDBTables = z.array(TDBTable);
 
 export const TTableData = z.record(z.string(), TDBColumnValue);
 
+export const TablesStatistics = z.object({
+  myDocumentsCount: z.number(),
+  tablesCount: z.number(),
+  documentsCount: z.record(z.string(), z.number()),
+});
+
 // FORM
 const DBColumn = z.object({
   name: z

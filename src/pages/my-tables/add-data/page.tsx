@@ -31,11 +31,13 @@ export const AddDataPage = () => {
 
   type TableDataFormValues = z.infer<typeof TableDataFormSchema>;
 
-  const { control, handleSubmit, watch, reset } = useForm<TableDataFormValues>({
+  const { control, handleSubmit, watch, reset } = useForm<{
+    rows: Array<TableDataFormValues>;
+  }>({
     defaultValues: {
       rows: [],
     },
-    resolver: zodResolver(TableDataFormSchema),
+    resolver: zodResolver(z.object({ rows: z.array(TableDataFormSchema) })),
   });
 
   const rows = watch("rows");
@@ -147,7 +149,7 @@ export const AddDataPage = () => {
                               <DynamicController
                                 key={key + keyIndex}
                                 control={control}
-                                index={index}
+                                controllerName={`rows.${index}.${key}.value`}
                                 type={type}
                                 name={key}
                               />

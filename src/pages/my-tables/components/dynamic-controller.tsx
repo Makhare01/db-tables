@@ -7,34 +7,39 @@ import { Control, Controller } from "react-hook-form";
 import { DatePicker } from "@app/ui/date-picker";
 
 type Props = {
-  control: Control<
-    {
-      rows: {
-        [x: string]: {
-          value?: any;
-          type?: any;
-        };
-      }[];
-    },
-    any
-  >;
+  control: Control<any>;
   type: DatabaseColumnTypes;
   name: string;
-  index: number;
+  controllerName: string;
+  label?: string;
 };
 
-export const DynamicController = ({ control, type, name, index }: Props) => {
+export const DynamicController = ({
+  control,
+  type,
+  name,
+  controllerName,
+  label,
+}: Props) => {
   return (
     <Controller
       control={control}
-      name={`rows.${index}.${name}.value`}
+      name={controllerName}
       render={({ field, fieldState: { error } }) => {
         if (type === "BOOLEAN") {
-          return <Checkbox {...field} />;
+          return (
+            <Checkbox
+              {...field}
+              checked={Boolean(field.value)}
+              sx={{ width: 30, height: 30 }}
+            />
+          );
         }
 
         if (type === "DATE") {
-          return <DatePicker {...field} {...getFieldError(error)} />;
+          return (
+            <DatePicker {...field} label={label} {...getFieldError(error)} />
+          );
         }
 
         return (
@@ -50,6 +55,7 @@ export const DynamicController = ({ control, type, name, index }: Props) => {
             {...getFieldError(error)}
             type={type === "NUMBER" ? "number" : "text"}
             placeholder={name}
+            label={label}
           />
         );
       }}

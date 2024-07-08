@@ -12,7 +12,8 @@ export const DynamicTableCell = ({ type, value }: Props) => {
 
   switch (type) {
     case "DATE":
-      tableCell = format(value as Date, "dd MMM yyyy");
+      console.log({ value });
+      tableCell = value !== "-" ? format(value as Date, "dd MMM yyyy") : value;
       break;
     case "BOOLEAN":
       tableCell = value === true ? "Yes" : "No";

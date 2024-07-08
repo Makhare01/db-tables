@@ -43,11 +43,11 @@ export const DashboardPage = () => {
             <>
               <Box display="flex" alignItems="flex-start" gap={2} mb={3}>
                 <StatisticBlock
-                  title="Tables Created"
+                  title="Total tables Created"
                   count={data.tablesCount}
                 />
                 <StatisticBlock
-                  title="Documents inserted"
+                  title="Total documents inserted"
                   count={data.myDocumentsCount}
                 />
               </Box>

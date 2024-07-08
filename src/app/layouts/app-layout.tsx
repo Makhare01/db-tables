@@ -1,14 +1,17 @@
 import { GlobalLoadingIndicator } from "@app/ui/global-loading-indicator";
-import { Box } from "@mui/material";
+import { Box, Drawer } from "@mui/material";
 import { ReactNode } from "react";
 import { Header } from "./components";
 import { Sidebar } from "./components/sidebar";
+import { useBoolean } from "@lib/hooks";
 
 type Props = {
   children: ReactNode;
 };
 
 export const AppLayout = ({ children }: Props) => {
+  const isOpen = useBoolean(false);
+
   return (
     <Box
       sx={{
@@ -28,7 +31,21 @@ export const AppLayout = ({ children }: Props) => {
           alignItems: "flex-start",
         }}
       >
-        <Sidebar />
+        <Drawer
+          open={isOpen.isTrue}
+          onClose={isOpen.setFalse}
+          sx={{
+            display: { xs: "block", lg: "none" },
+          }}
+        >
+          <Sidebar />
+        </Drawer>
+
+        {/** When screen is bigger then lg */}
+        <Box height={1} display={{ xs: "none", lg: "block" }}>
+          <Sidebar />
+        </Box>
+
         <Box
           sx={{
             width: 1,
@@ -36,11 +53,11 @@ export const AppLayout = ({ children }: Props) => {
             display: "flex",
             flexDirection: "column",
             alignItems: "stretch",
-            maxWidth: "calc(100% - 300px)",
+            maxWidth: { xs: 1, lg: "calc(100% - 300px)" },
             maxHeight: 1,
           }}
         >
-          <Header />
+          <Header onMenuOpen={isOpen.toggle} />
           <Box
             sx={{
               flex: 1,

@@ -11,3 +11,4 @@ export { IconTrashBin } from "./trash-bin";
 export { IconEdit } from "./edit";
 export { IconEyeOpen } from "./eye-open";
 export { IconEyeClose } from "./eye-close";
+export { IconBurgerMenu } from "./burger-menu";

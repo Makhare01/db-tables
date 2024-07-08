@@ -39,7 +39,8 @@ export const Select = forwardRef<HTMLSelectElement, Props>(
           ref={ref}
           {...props}
           sx={{
-            bgcolor: "white",
+            bgcolor: "background.default",
+            borderRadius: 2,
             boxShadow: "none",
             ".MuiOutlinedInput-notchedOutline": { border: 0 },
             "&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
@@ -56,13 +57,13 @@ export const Select = forwardRef<HTMLSelectElement, Props>(
               sx: {
                 ".MuiMenuItem-root": {
                   ":hover": {
-                    bgcolor: "success.light",
+                    bgcolor: "primary.light",
                   },
                 },
                 "&& .Mui-selected": {
-                  bgcolor: "success.main",
+                  bgcolor: "primary.main",
                   ":hover": {
-                    bgcolor: "success.main",
+                    bgcolor: "primary.main",
                   },
                 },
               },
@@ -73,6 +74,11 @@ export const Select = forwardRef<HTMLSelectElement, Props>(
                 border: 1,
                 borderColor: "divider",
                 mt: 0.25,
+                bgcolor: "background.default",
+                pt: 0,
+                "& .MuiList-root": {
+                  p: 0,
+                },
               },
             },
           }}

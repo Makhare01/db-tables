@@ -7,3 +7,8 @@ export { IconTable } from "./table";
 export { IconDashboard } from "./dashboard";
 export { IconCreateTable } from "./create-table";
 export { IconPublicTables } from "./public-tables";
+export { IconTrashBin } from "./trash-bin";
+export { IconEdit } from "./edit";
+export { IconEyeOpen } from "./eye-open";
+export { IconEyeClose } from "./eye-close";
+export { IconBurgerMenu } from "./burger-menu";

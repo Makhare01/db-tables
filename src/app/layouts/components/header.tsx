@@ -2,9 +2,13 @@ import { paths } from "@app/routes";
 import { Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@app/ui/button";
-import { IconPlus } from "@app/assets/icons";
+import { IconBurgerMenu, IconPlus } from "@app/assets/icons";
 
-export const Header = () => {
+type Props = {
+  onMenuOpen: () => void;
+};
+
+export const Header = ({ onMenuOpen }: Props) => {
   const navigate = useNavigate();
 
   return (
@@ -18,22 +22,38 @@ export const Header = () => {
         py: 1,
       }}
     >
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          cursor: "pointer",
-        }}
-        onClick={() => {
-          navigate(paths.dashboard);
-        }}
-      >
-        <Typography variant="h3" sx={{ fontWeight: 700 }}>
-          Dashboard
-        </Typography>
+      <Box display="flex" alignItems="center" gap={2}>
+        <IconBurgerMenu
+          sx={{
+            cursor: "pointer",
+            display: { xs: "block", lg: "none" },
+            color: "primary.main",
+          }}
+          onClick={onMenuOpen}
+        />
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            navigate(paths.dashboard);
+          }}
+        >
+          <Typography variant="h3" sx={{ fontWeight: 700 }}>
+            DB Tables
+          </Typography>
+        </Box>
       </Box>
 
-      <Button variant="outlined" sx={{ display: "flex", alignItems: "center" }}>
+      <Button
+        variant="outlined"
+        sx={{ display: "flex", alignItems: "center" }}
+        onClick={() => {
+          navigate(paths.createTable);
+        }}
+      >
         <IconPlus sx={{ mr: 1 }} />
         Create
       </Button>

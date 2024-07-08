@@ -41,13 +41,9 @@ export const EditDocButton = ({
     resolver: zodResolver(CollectionDocumentSchema),
   });
 
-  console.log({ defaultValues });
-
   const $updateDoc = useMutation({
     mutationFn: updateDocument,
   });
-
-  // console.log({ errors, isValid });
 
   return (
     <>
@@ -59,7 +55,6 @@ export const EditDocButton = ({
         open={isOpen.isTrue}
         title="Edit document"
         confirmText="Save"
-        confirmButtonColor="error"
         onConfirm={handleSubmit((values) => {
           const body = Object.keys(values).reduce(
             (acc, currentKey) => ({

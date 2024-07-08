@@ -8,7 +8,7 @@ export const Sidebar = () => {
     <Box
       sx={{
         height: 1,
-        width: 1,
+        width: 300,
         maxWidth: 300,
         bgcolor: "background.paper",
         p: 3,

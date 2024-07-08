@@ -84,6 +84,8 @@ export const Dialog = ({
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
+          px: 3,
+          py: 2,
         }}
       >
         <Button variant="outlined" onClick={onClose}>

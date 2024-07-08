@@ -60,7 +60,7 @@ export const TablePagination = ({
     page <= 2 ? Math.ceil(totalCount / pageSize) : page;
 
   const arePrevPages = page >= 2;
-  const areNextPages = page !== Math.ceil(totalCount / pageSize);
+  const areNextPages = page < Math.ceil(totalCount / pageSize);
 
   return (
     <Box

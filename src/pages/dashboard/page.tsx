@@ -56,14 +56,24 @@ export const DashboardPage = () => {
                 p={3}
                 bgcolor="background.paper"
                 borderRadius={2}
-                height={400}
+                height={data.tablesCount > 0 ? 400 : "auto"}
               >
-                <StatisticsChart
-                  data={Object.keys(data.documentsCount).map((key) => ({
-                    name: key,
-                    count: data.documentsCount[key],
-                  }))}
-                />
+                {data.tablesCount > 0 ? (
+                  <StatisticsChart
+                    data={Object.keys(data.documentsCount).map((key) => ({
+                      name: key,
+                      count: data.documentsCount[key],
+                    }))}
+                  />
+                ) : (
+                  <Typography
+                    textAlign="center"
+                    variant="body1"
+                    fontWeight={700}
+                  >
+                    There is no data to show in chart
+                  </Typography>
+                )}
               </Box>
             </>
           );

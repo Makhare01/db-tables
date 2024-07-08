@@ -1,7 +1,8 @@
 import { qk } from "@api/query-keys";
 import { getTableDetails } from "@api/table";
+import { Loader } from "@app/ui/loader";
 import { ErrorView } from "@components/error-view";
-import { Box, CircularProgress } from "@mui/material";
+import { Box } from "@mui/material";
 import { DetailsDataTable } from "@pages/my-tables/components";
 import { DetailsField } from "@pages/my-tables/details/page";
 import { useQuery } from "@tanstack/react-query";
@@ -24,7 +25,7 @@ export const PublicTablePage = () => {
         .with({ isError: true, error: P.select() }, (error) => (
           <ErrorView message={error.message} />
         ))
-        .with({ isLoading: true }, () => <CircularProgress />)
+        .with({ isLoading: true }, () => <Loader centered />)
         .with({ isSuccess: true, data: P.select() }, (table) => {
           return (
             <Box maxHeight={1} display="flex" flexDirection="column">

@@ -5,7 +5,7 @@ import { GlobalQueryClientProvider } from "@lib/query-utils";
 import { CircularProgress, ThemeProvider } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import { LocalizationProvider } from "@mui/x-date-pickers";
-import React, { ReactNode, Suspense } from "react";
+import { ReactNode, Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Outlet } from "react-router-dom";

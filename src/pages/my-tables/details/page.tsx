@@ -1,6 +1,6 @@
 import { qk } from "@api/query-keys";
 import { getTableDetails } from "@api/table";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { dbVisibilityOptions } from "@utils/tables";
 import { generatePath, useNavigate, useParams } from "react-router-dom";
@@ -11,6 +11,7 @@ import { Button } from "@app/ui/button";
 import { DeleteTableButton, DetailsDataTable } from "../components";
 import { paths } from "@app/routes";
 import { ErrorView } from "@components/error-view";
+import { Loader } from "@app/ui/loader";
 
 export const DetailsField = ({
   label,
@@ -45,7 +46,7 @@ export const MyTableDetailsPage = () => {
         .with({ isError: true, error: P.select() }, (error) => (
           <ErrorView message={error.message} />
         ))
-        .with({ isLoading: true }, () => <CircularProgress />)
+        .with({ isLoading: true }, () => <Loader centered />)
         .with({ isSuccess: true, data: P.select() }, (table) => {
           return (
             <Box maxHeight={1} display="flex" flexDirection="column">

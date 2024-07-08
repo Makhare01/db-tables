@@ -1,7 +1,7 @@
 import { request } from "@lib/request";
-import { SignInFormValues } from "@pages/sign-in";
-import { SignUpFormValues } from "@pages/sign-up";
 import { TAuthUser } from "./auth.schema";
+import { SignInFormValues } from "@pages/sign-in/page";
+import { SignUpFormValues } from "@pages/sign-up/page";
 
 export const signIn = async (input: SignInFormValues) => {
   return await request("/api/auth/sign-in").post(

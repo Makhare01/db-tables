@@ -3,7 +3,7 @@ import { addTableData, getTableDetails } from "@api/table";
 import { Button } from "@app/ui/button";
 import { Column, Table } from "@app/ui/table";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { schemaBuilder } from "@utils/schema-builder";
 import { useFieldArray, useForm } from "react-hook-form";
@@ -15,6 +15,7 @@ import { IconTrashBin } from "@app/assets/icons";
 import { toast } from "react-toastify";
 import { ToastContent } from "@app/ui/toast";
 import { paths } from "@app/routes";
+import { Loader } from "@app/ui/loader";
 
 export const AddDataPage = () => {
   const navigate = useNavigate();
@@ -51,7 +52,7 @@ export const AddDataPage = () => {
   return (
     <Box width={1} height={1} p={3}>
       {match($tableDetails)
-        .with({ isLoading: true }, () => <CircularProgress />)
+        .with({ isLoading: true }, () => <Loader centered />)
         .with({ isSuccess: true, data: P.select() }, (table) => {
           const columns: Array<Column> = table.tableColumns.map((column) => ({
             key: column._id,

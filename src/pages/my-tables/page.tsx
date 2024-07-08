@@ -1,8 +1,9 @@
 import { qk } from "@api/query-keys";
 import { getMyTables } from "@api/table";
 import { paths } from "@app/routes";
+import { Loader } from "@app/ui/loader";
 import { TableCard } from "@components/table-card";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { generatePath } from "react-router-dom";
 import { P, match } from "ts-pattern";
@@ -17,7 +18,7 @@ export const MyTablesPage = () => {
     <Box width={1} height={1} p={3}>
       {match($myTables)
         .with({ isLoading: true }, () => {
-          return <CircularProgress />;
+          return <Loader centered />;
         })
         .with({ isSuccess: true, data: P.select() }, (tables) => {
           return (

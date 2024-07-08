@@ -13,6 +13,7 @@ export const NumberParam = withDefault(
   1
 ) as QueryParamConfig<number>;
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const usePagination = (sizeLocalStorageKey: string): Pagination => {
   const [index, setIndex] = useQueryParam("page", NumberParam);
   const [size, setSize] = useLocalStorageState(sizeLocalStorageKey, {
